@@ -1,0 +1,93 @@
+{
+    "type": "object",
+    "properties": {
+        "instanceName": {
+            "required": true,
+            "type": "string"
+        },
+        "access_token": {
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A request message for\nExecution.Execute.",
+            "properties": {
+                "actionDigest": {
+                    "description": "The digest of the Action to\nexecute.",
+                    "properties": {
+                        "hash": {
+                            "description": "The hash. In the case of SHA-256, it will always be a lowercase hex string\nexactly 64 characters long.",
+                            "type": "string"
+                        },
+                        "sizeBytes": {
+                            "description": "The size of the blob, in bytes.",
+                            "format": "int64",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "executionPolicy": {
+                    "description": "An optional policy for execution of the action.\nThe server will have a default policy if this is not provided.",
+                    "properties": {
+                        "priority": {
+                            "description": "The priority (relative importance) of this action. Generally, a lower value\nmeans that the action should be run sooner than actions having a greater\npriority value, but the interpretation of a given value is server-\ndependent. A priority of 0 means the *default* priority. Priorities may be\npositive or negative, and such actions should run later or sooner than\nactions having the default priority, respectively. The particular semantics\nof this field is up to the server. In particular, every server will have\ntheir own supported range of priorities, and will decide how these map into\nscheduling policy.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "resultsCachePolicy": {
+                    "description": "An optional policy for the results of this execution in the remote cache.\nThe server will have a default policy if this is not provided.\nThis may be applied to both the ActionResult and the associated blobs.",
+                    "properties": {
+                        "priority": {
+                            "description": "The priority (relative importance) of this content in the overall cache.\nGenerally, a lower value means a longer retention time or other advantage,\nbut the interpretation of a given value is server-dependent. A priority of\n0 means a *default* value, decided by the server.\n\nThe particular semantics of this field is up to the server. In particular,\nevery server will have their own supported range of priorities, and will\ndecide how these map into retention/eviction policy.",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "skipCacheLookup": {
+                    "description": "If true, the action will be executed anew even if its result was already\npresent in the cache. If false, the result may be served from the\nActionCache.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
